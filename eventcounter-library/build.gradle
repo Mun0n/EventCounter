@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+apply plugin: 'bintray-release'
+
+android {
+  compileSdkVersion 22
+  buildToolsVersion "22.0.0"
+
+  defaultConfig {
+    minSdkVersion 15
+    targetSdkVersion 22
+    versionCode 100
+    versionName "1.0.0"
+  }
+
+  sourceSets {
+    instrumentTest.setRoot("src/androidTest")
+  }
+}
+
+dependencies {
+  androidTestCompile('junit:junit:4.10') {
+    exclude group: 'org.hamcrest'
+  }
+}
+
+publish {
+  userOrg = 'hrules6872'
+  groupId = 'com.hrules'
+  artifactId = 'eventcounter'
+  version = '1.0.0'
+  description = 'Event Counter'
+  website = 'https://github.com/hrules6872/EventCounter'
+  repository = "https://github.com/hrules6872/EventCounter.git"
+}

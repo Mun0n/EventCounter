@@ -1,0 +1,7 @@
+<resources>
+  <string name="app_name">EventCounter</string>
+  <string name="add">Add</string>
+  <string name="count">Count: %d</string>
+  <string name="reset">Reset</string>
+  <string name="activity">Activity launch count: %d</string>
+</resources>
