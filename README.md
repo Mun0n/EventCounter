@@ -6,7 +6,7 @@ EventCounter
 Add this dependency to your build.gradle file:
 ```java
 dependencies {
-    compile 'com.hrules:eventcounter:1.0.0'
+    compile 'com.hrules:eventcounter:1.0.1'
 }
 ```
 
