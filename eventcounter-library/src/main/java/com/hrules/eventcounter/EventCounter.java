@@ -104,10 +104,7 @@ public class EventCounter {
     }
 
     public void removeAll() {
-        Map<String, ?> map = getAll();
-        for (String key : map.keySet()) {
-            removeKey(key);
-        }
+        editor.clear().commit();
     }
 
     public boolean contains(String key) {

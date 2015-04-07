@@ -43,9 +43,13 @@ public class MainActivity extends ActionBarActivity implements SharedPreferences
     @Override
     protected void onResume() {
         super.onResume();
-        tvActivity.setText(String.format(getString(R.string.activity), eventCounter.incrementKeyValue(EVENTCOUNTER_ACTIVITY).getKeyValue(EVENTCOUNTER_ACTIVITY)));
+        setActivityCount();
 
         eventCounter.getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+    }
+
+    private void setActivityCount() {
+        tvActivity.setText(String.format(getString(R.string.activity), eventCounter.incrementKeyValue(EVENTCOUNTER_ACTIVITY).getKeyValue(EVENTCOUNTER_ACTIVITY)));
     }
 
     @Override
