@@ -8,7 +8,7 @@ import java.util.Map;
 import org.junit.Before;
 
 public class EventCounterTest extends AndroidTestCase {
-    private final static String TAG = "LibraryTest";
+    private final static String TAG = "EventCounterTest";
 
     private final static String DEFAULT_KEY_NAME = "DEFAULT_KEY_NAME";
     private static final int DEFAULT_VALUE = 5;
@@ -31,13 +31,13 @@ public class EventCounterTest extends AndroidTestCase {
     @SmallTest
     public void testSetKeyValue() {
         eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
-        assertTrue(eventCounter.getKeyValue(DEFAULT_KEY_NAME) == 5);
+        assertTrue(eventCounter.getKeyValue(DEFAULT_KEY_NAME) == DEFAULT_VALUE);
     }
 
     @SmallTest
     public void testSingletonSetKeyValue() {
-        EventCounter.with(context).setKeyValue(DEFAULT_KEY_NAME, 5);
-        assertTrue(EventCounter.with(context).getKeyValue(DEFAULT_KEY_NAME) == 5);
+        EventCounter.with(context).setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
+        assertTrue(EventCounter.with(context).getKeyValue(DEFAULT_KEY_NAME) == DEFAULT_VALUE);
     }
 
     @SmallTest
@@ -48,12 +48,12 @@ public class EventCounterTest extends AndroidTestCase {
 
     @SmallTest
     public void testGetKeyValue() {
-        assertTrue(new EventCounter(context).getKeyValue(DEFAULT_KEY_NAME, 5) == 5);
+        assertTrue(new EventCounter(context).getKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE) == DEFAULT_VALUE);
     }
 
     @SmallTest
     public void testRemoveKey() {
-        eventCounter.setKeyValue(DEFAULT_KEY_NAME, 5);
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
         eventCounter.removeKey(DEFAULT_KEY_NAME);
         assertTrue(eventCounter.getKeyValue(DEFAULT_KEY_NAME) == EventCounter.DEFAULT_KEY_VALUE);
     }
@@ -66,41 +66,41 @@ public class EventCounterTest extends AndroidTestCase {
 
     @SmallTest
     public void testResetKeyValue() {
-        eventCounter.setKeyValue(DEFAULT_KEY_NAME, 5);
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
         eventCounter.resetKeyValue(DEFAULT_KEY_NAME);
         assertTrue(eventCounter.getKeyValue(DEFAULT_KEY_NAME) == EventCounter.DEFAULT_KEY_VALUE);
     }
 
     @SmallTest
     public void testCheckKeyValue() {
-        eventCounter.setKeyValue(DEFAULT_KEY_NAME, 5);
-        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, 5));
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
+        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE));
     }
 
     @SmallTest
     public void testincrementByOne() {
-        eventCounter.setKeyValue(DEFAULT_KEY_NAME, 5);
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
         eventCounter.incrementKeyValue(DEFAULT_KEY_NAME);
-        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, 5 + EventCounter.DEFAULT_INCREMENT_VALUE));
+        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE + EventCounter.DEFAULT_INCREMENT_VALUE));
     }
 
     @SmallTest
     public void testincrementByMax() {
-        eventCounter.setKeyValue(DEFAULT_KEY_NAME, 5);
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
         eventCounter.incrementKeyValue(DEFAULT_KEY_NAME, Integer.MAX_VALUE);
         assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, Integer.MAX_VALUE));
     }
 
     @SmallTest
     public void testdecrementByOne() {
-        eventCounter.setKeyValue(DEFAULT_KEY_NAME, 5);
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
         eventCounter.decrementKeyValue(DEFAULT_KEY_NAME);
-        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, 5 - EventCounter.DEFAULT_DECREMENT_VALUE));
+        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE - EventCounter.DEFAULT_DECREMENT_VALUE));
     }
 
     @SmallTest
     public void testdecrementByMax() {
-        eventCounter.setKeyValue(DEFAULT_KEY_NAME, 5);
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
         eventCounter.decrementKeyValue(DEFAULT_KEY_NAME, Integer.MAX_VALUE);
         assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, EventCounter.DEFAULT_KEY_VALUE));
     }
@@ -126,7 +126,7 @@ public class EventCounterTest extends AndroidTestCase {
 
     @SmallTest
     public void testResetAll() {
-        eventCounter.setKeyValue(DEFAULT_KEY_NAME, 5);
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
         eventCounter.resetAll();
         assertTrue(eventCounter.contains(DEFAULT_KEY_NAME));
     }
