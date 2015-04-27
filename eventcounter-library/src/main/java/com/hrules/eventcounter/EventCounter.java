@@ -36,7 +36,7 @@ public class EventCounter {
     }
 
     public EventCounter setKeyValue(String key, int value) {
-        editor.putInt(key, value).apply();
+        editor.putInt(key, value).commit();
         return this;
     }
 
@@ -49,7 +49,7 @@ public class EventCounter {
     }
 
     public void removeKey(String key) {
-        editor.remove(key).apply();
+        editor.remove(key).commit();
     }
 
     public void addKey(String key) {
