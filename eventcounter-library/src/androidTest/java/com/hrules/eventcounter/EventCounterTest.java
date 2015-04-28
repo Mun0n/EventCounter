@@ -78,6 +78,34 @@ public class EventCounterTest extends AndroidTestCase {
     }
 
     @SmallTest
+    public void testCheckKeyValueEqualTo() {
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
+        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE, EventCounter.EQUAL_TO));
+    }
+
+    @SmallTest
+    public void testCheckKeyValueGreateThan() {
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE + 1);
+        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE, EventCounter.GREATER_THAN));
+    }
+
+    @SmallTest
+    public void testCheckKeyValueGreateThanOrEqualTo() {
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
+        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE, EventCounter.GREATER_THAN_OR_EQUAL_TO));
+    }
+
+    public void testCheckKeyValueLessThan() {
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE - 1);
+        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE, EventCounter.LESS_THAN));
+    }
+
+    public void testCheckKeyValueLessThanOrEqualTo() {
+        eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
+        assertTrue(eventCounter.checkKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE, EventCounter.LESS_THAN_OR_EQUAL_TO));
+    }
+
+    @SmallTest
     public void testincrementByOne() {
         eventCounter.setKeyValue(DEFAULT_KEY_NAME, DEFAULT_VALUE);
         eventCounter.incrementKeyValue(DEFAULT_KEY_NAME);

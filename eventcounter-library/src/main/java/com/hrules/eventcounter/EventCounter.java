@@ -18,6 +18,12 @@ public class EventCounter {
 
     private static EventCounter singleton;
 
+    public static final int EQUAL_TO = 0;
+    public static final int LESS_THAN = 1;
+    public static final int LESS_THAN_OR_EQUAL_TO = 2;
+    public static final int GREATER_THAN = 3;
+    public static final int GREATER_THAN_OR_EQUAL_TO = 4;
+
     @SuppressLint("CommitPrefEdits")
     public EventCounter(Context context) {
         if (context == null) {
@@ -68,7 +74,27 @@ public class EventCounter {
     }
 
     public boolean checkKeyValue(String key, int expectedValue) {
-        return getKeyValue(key, DEFAULT_KEY_VALUE) == expectedValue;
+        return checkKeyValue(key, expectedValue, EQUAL_TO);
+    }
+
+    public boolean checkKeyValue(String key, int expectedValue, int operator) {
+        switch (operator) {
+            case LESS_THAN:
+                return getKeyValue(key, DEFAULT_KEY_VALUE) < expectedValue;
+
+            case LESS_THAN_OR_EQUAL_TO:
+                return getKeyValue(key, DEFAULT_KEY_VALUE) <= expectedValue;
+
+            case GREATER_THAN:
+                return getKeyValue(key, DEFAULT_KEY_VALUE) > expectedValue;
+
+            case GREATER_THAN_OR_EQUAL_TO:
+                return getKeyValue(key, DEFAULT_KEY_VALUE) >= expectedValue;
+
+            case EQUAL_TO:
+            default:
+                return getKeyValue(key, DEFAULT_KEY_VALUE) == expectedValue;
+        }
     }
 
     public EventCounter incrementKeyValue(String key) {
